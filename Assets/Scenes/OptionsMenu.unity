@@ -132,7 +132,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1783070662}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1659636920}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -363,6 +363,10 @@ MonoBehaviour:
   testValue: 2137
   multiplier: 1
   anotherMultiplier: 1
+  addButton: {fileID: 1659636920}
+  substractButton: {fileID: 1105230288}
+  multiplyToggle: {fileID: 1247459295}
+  multiplySlider: {fileID: 171675465}
 --- !u!4 &969307338
 Transform:
   m_ObjectHideFlags: 0
@@ -377,6 +381,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1105230288 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1033128487827297044, guid: c97b798fe0f26a64c83a72beaf30abf8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1476428576}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1247459295 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5444626386855427268, guid: 8ece68c241e7df640b34b6b12725f207,
+    type: 3}
+  m_PrefabInstance: {fileID: 2113573388}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1426824630 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1033128487827297047, guid: c97b798fe0f26a64c83a72beaf30abf8,
@@ -715,6 +731,12 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
+--- !u!1 &1659636920 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1033128487827297044, guid: c97b798fe0f26a64c83a72beaf30abf8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1783070662}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1783070662
 PrefabInstance:
   m_ObjectHideFlags: 0
