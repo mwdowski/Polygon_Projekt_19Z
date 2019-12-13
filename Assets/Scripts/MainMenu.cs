@@ -1,27 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+
 
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private DefaultSubmenu optionsMenu;
     [SerializeField] private DefaultSubmenu creditsMenu;
+	private DefaultSubmenu currentSubmenu;
 
-    private void Awake() //na starcie gry menu opcji i credits zostają wyłączone
-    {
-        optionsMenu.gameObject.SetActive(false);
-        creditsMenu.gameObject.SetActive(false);
-    }
 
-    private DefaultSubmenu currentSubmenu;
-
-    private void OnBackButtonClicked() //cofniecie sie do MainMenu
-    {
-        CurrentSubmenu = null;
-    }
-
-	private DefaultSubmenu CurrentSubmenu
+	private DefaultSubmenu CurrentSubmenu //automatycznie przechodzi miedzy wybranymi menu i cofa do glownego menu
 	{
 		get
 		{
@@ -54,12 +42,24 @@ public class MainMenu : MonoBehaviour
 		}
 	}
 
-	public void OpenOptionsMenu()
+
+	private void Awake() //na starcie gry menu opcji i credits zostają wyłączone
+	{
+		optionsMenu.gameObject.SetActive(false);
+		creditsMenu.gameObject.SetActive(false);
+	}
+
+	private void OnBackButtonClicked() //cofniecie sie do MainMenu
+	{
+		CurrentSubmenu = null;
+	}
+
+	public void OpenOptionsMenu() //przejscie do menu opcji
     {
        CurrentSubmenu = optionsMenu;
     }
 
-    public void OpenCreditsMenu()
+    public void OpenCreditsMenu() //przejscie do napisow tworcow
     {
        CurrentSubmenu = creditsMenu;
     }
