@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour
 
     private void OnBackButtonClicked() //cofniecie sie do MainMenu
     {
-        currentSubmenu = null;
+        CurrentSubmenu = null;
     }
 
 	private DefaultSubmenu CurrentSubmenu
