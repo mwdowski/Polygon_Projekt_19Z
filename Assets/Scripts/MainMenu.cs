@@ -4,8 +4,10 @@ using UnityEngine.Assertions;
 
 public class MainMenu : MonoBehaviour
 {
+	[SerializeField] private DefaultSubmenu howToPlayMenuPrefab = null;
 	[SerializeField] private DefaultSubmenu optionsMenuPrefab = null;
     [SerializeField] private DefaultSubmenu creditsMenuPrefab = null;
+	private DefaultSubmenu howToPlayMenuInstance = null;
 	private DefaultSubmenu optionsMenuInstance = null;
 	private DefaultSubmenu creditsMenuInstance = null;
 	private DefaultSubmenu currentSubmenu = null;
@@ -47,8 +49,11 @@ public class MainMenu : MonoBehaviour
 	//Na starcie gry menu opcji i credits zostają wyłączone.
 	private void Awake()
 	{
+		Assert.IsNotNull(creditsMenuPrefab, "Missing howToPlayMenuPrefab on: " + gameObject.name);
 		Assert.IsNotNull(optionsMenuPrefab, "Missing optionsMenuPrefab on: " + gameObject.name);
-		Assert.IsNotNull(creditsMenuPrefab, "Missing creditsMenuPrefab on: " + gameObject.name);
+		Assert.IsNotNull(creditsMenuPrefab, "Missing creditsMenuPrefab on: " + gameObject.name);		
+		howToPlayMenuInstance = Instantiate(howToPlayMenuPrefab, transform.parent);
+		howToPlayMenuInstance.gameObject.SetActive(false);
 		optionsMenuInstance = Instantiate(optionsMenuPrefab, transform.parent);
 		optionsMenuInstance.gameObject.SetActive(false);
 		creditsMenuInstance = Instantiate(creditsMenuPrefab, transform.parent);
@@ -59,6 +64,17 @@ public class MainMenu : MonoBehaviour
 	private void OnBackButtonClicked()
 	{
 		CurrentSubmenu = null;
+	}
+
+	public void PlayGame()
+	{
+		//TODO: 
+	}
+
+	//Stworzenie menu opcji i przejscie do niego.
+	public void OpenHowToPlay()
+	{
+		CurrentSubmenu = howToPlayMenuInstance;
 	}
 
 	//Stworzenie menu opcji i przejscie do niego.
