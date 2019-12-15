@@ -6,6 +6,7 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private DefaultSubmenu optionsMenu;
     [SerializeField] private DefaultSubmenu creditsMenu;
+	[SerializeField] private GameObject Submenu;
 	private DefaultSubmenu currentSubmenu;
 
 
@@ -25,6 +26,8 @@ public class MainMenu : MonoBehaviour
 			else
 			{
 				currentSubmenu.gameObject.SetActive(false);
+				Destroy(currentSubmenu.gameObject);
+				Submenu.gameObject.SetActive(false);
 				currentSubmenu.Button.onClick.RemoveListener(OnBackButtonClicked);
 			}
 
@@ -37,6 +40,7 @@ public class MainMenu : MonoBehaviour
 			else
 			{
 				currentSubmenu.gameObject.SetActive(true);
+				Submenu.gameObject.SetActive(true);
 				currentSubmenu.Button.onClick.AddListener(OnBackButtonClicked);
 			}
 		}
@@ -45,8 +49,7 @@ public class MainMenu : MonoBehaviour
 
 	private void Awake() //na starcie gry menu opcji i credits zostają wyłączone
 	{
-		optionsMenu.gameObject.SetActive(false);
-		creditsMenu.gameObject.SetActive(false);
+		Submenu.gameObject.SetActive(false);
 	}
 
 	private void OnBackButtonClicked() //cofniecie sie do MainMenu
@@ -54,14 +57,23 @@ public class MainMenu : MonoBehaviour
 		CurrentSubmenu = null;
 	}
 
-	public void OpenOptionsMenu() //przejscie do menu opcji
-    {
-       CurrentSubmenu = optionsMenu;
-    }
+	public void OpenOptionsMenu() //stworzenie menu opcji i przejscie do niego
+	{
+		DefaultSubmenu menu_1;
+		menu_1 = Instantiate(optionsMenu, Submenu.transform);
+		CurrentSubmenu = menu_1;
+	}
 
-    public void OpenCreditsMenu() //przejscie do napisow tworcow
+	public void OpenCreditsMenu() //stworzenie menu napisow tworcow i przejscie do niego
+	{
+		DefaultSubmenu menu_2;
+		menu_2 = Instantiate(creditsMenu, Submenu.transform);
+		CurrentSubmenu = menu_2;
+	}
+
+	public void quit()//funkcja do wyjscia z gry
     {
-       CurrentSubmenu = creditsMenu;
-    }
+		Application.Quit();
+	}
 
 }

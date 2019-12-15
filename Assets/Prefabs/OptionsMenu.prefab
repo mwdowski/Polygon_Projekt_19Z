@@ -115,7 +115,12 @@ PrefabInstance:
     - target: {fileID: 7129384468712758729, guid: 4e96509627726d24daf1850325b9241a,
         type: 3}
       propertyPath: m_Name
-      value: Options
+      value: OptionsMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7129384468712758729, guid: 4e96509627726d24daf1850325b9241a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7129384469734333936, guid: 4e96509627726d24daf1850325b9241a,
         type: 3}
