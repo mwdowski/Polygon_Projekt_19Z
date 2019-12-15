@@ -46,10 +46,10 @@ public class MainMenu : MonoBehaviour
 	}
 
 
-	//Na starcie gry menu opcji i credits zostają wyłączone.
+	//Na starcie gry podległe menu zostają stworzone i wyłączone.
 	private void Awake()
 	{
-		Assert.IsNotNull(creditsMenuPrefab, "Missing howToPlayMenuPrefab on: " + gameObject.name);
+		Assert.IsNotNull(howToPlayMenuPrefab, "Missing howToPlayMenuPrefab on: " + gameObject.name);
 		Assert.IsNotNull(optionsMenuPrefab, "Missing optionsMenuPrefab on: " + gameObject.name);
 		Assert.IsNotNull(creditsMenuPrefab, "Missing creditsMenuPrefab on: " + gameObject.name);		
 		howToPlayMenuInstance = Instantiate(howToPlayMenuPrefab, transform.parent);
@@ -66,31 +66,27 @@ public class MainMenu : MonoBehaviour
 		CurrentSubmenu = null;
 	}
 
-	public void PlayGame()
+	public void StartGame()
 	{
-		//TODO: 
+		//TODO: Uruchamianie sceny z rozgrywką.
 	}
 
-	//Stworzenie menu opcji i przejscie do niego.
 	public void OpenHowToPlay()
 	{
 		CurrentSubmenu = howToPlayMenuInstance;
 	}
 
-	//Stworzenie menu opcji i przejscie do niego.
 	public void OpenOptionsMenu()
 	{
 		CurrentSubmenu = optionsMenuInstance;
 	}
 
-	//Stworzenie menu napisow tworcow i przejscie do niego.
 	public void OpenCreditsMenu()
 	{
 		CurrentSubmenu = creditsMenuInstance;
 	}
 
-	//Funkcja do wyjscia z gry.
-	public void Quit()
+	public void QuitGame()
     {
 		Application.Quit();
 	}
