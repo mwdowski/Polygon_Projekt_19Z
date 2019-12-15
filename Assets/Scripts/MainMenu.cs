@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Assertions;
 
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private DefaultSubmenu optionsMenu;
-    [SerializeField] private DefaultSubmenu creditsMenu;
-	[SerializeField] private GameObject Submenu;
-	private DefaultSubmenu currentSubmenu;
+	[SerializeField] private DefaultSubmenu optionsMenuPrefab = null;
+    [SerializeField] private DefaultSubmenu creditsMenuPrefab = null;
+	private DefaultSubmenu optionsMenuInstance = null;
+	private DefaultSubmenu creditsMenuInstance = null;
+	private DefaultSubmenu currentSubmenu = null;
 
 
-	private DefaultSubmenu CurrentSubmenu //automatycznie przechodzi miedzy wybranymi menu i cofa do glownego menu
+	//Automatycznie przechodzi miedzy wybranymi menu i cofa do glownego menu.
+	private DefaultSubmenu CurrentSubmenu
 	{
 		get
 		{
@@ -26,13 +28,9 @@ public class MainMenu : MonoBehaviour
 			else
 			{
 				currentSubmenu.gameObject.SetActive(false);
-				Destroy(currentSubmenu.gameObject);
-				Submenu.gameObject.SetActive(false);
 				currentSubmenu.Button.onClick.RemoveListener(OnBackButtonClicked);
 			}
-
 			currentSubmenu = value;
-
 			if (currentSubmenu == null)
 			{
 				gameObject.SetActive(true);
@@ -40,40 +38,44 @@ public class MainMenu : MonoBehaviour
 			else
 			{
 				currentSubmenu.gameObject.SetActive(true);
-				Submenu.gameObject.SetActive(true);
 				currentSubmenu.Button.onClick.AddListener(OnBackButtonClicked);
 			}
 		}
 	}
 
 
-	private void Awake() //na starcie gry menu opcji i credits zostają wyłączone
+	//Na starcie gry menu opcji i credits zostają wyłączone.
+	private void Awake()
 	{
-		Submenu.gameObject.SetActive(false);
+		Assert.IsNotNull(optionsMenuPrefab, "Missing optionsMenuPrefab on: " + gameObject.name);
+		Assert.IsNotNull(creditsMenuPrefab, "Missing creditsMenuPrefab on: " + gameObject.name);
+		optionsMenuInstance = Instantiate(optionsMenuPrefab, transform.parent);
+		optionsMenuInstance.gameObject.SetActive(false);
+		creditsMenuInstance = Instantiate(creditsMenuPrefab, transform.parent);
+		creditsMenuInstance.gameObject.SetActive(false);
 	}
 
-	private void OnBackButtonClicked() //cofniecie sie do MainMenu
+	//Cofniecie sie do MainMenu.
+	private void OnBackButtonClicked()
 	{
 		CurrentSubmenu = null;
 	}
 
-	public void OpenOptionsMenu() //stworzenie menu opcji i przejscie do niego
+	//Stworzenie menu opcji i przejscie do niego.
+	public void OpenOptionsMenu()
 	{
-		DefaultSubmenu menu_1;
-		menu_1 = Instantiate(optionsMenu, Submenu.transform);
-		CurrentSubmenu = menu_1;
+		CurrentSubmenu = optionsMenuInstance;
 	}
 
-	public void OpenCreditsMenu() //stworzenie menu napisow tworcow i przejscie do niego
+	//Stworzenie menu napisow tworcow i przejscie do niego.
+	public void OpenCreditsMenu()
 	{
-		DefaultSubmenu menu_2;
-		menu_2 = Instantiate(creditsMenu, Submenu.transform);
-		CurrentSubmenu = menu_2;
+		CurrentSubmenu = creditsMenuInstance;
 	}
 
-	public void quit()//funkcja do wyjscia z gry
+	//Funkcja do wyjscia z gry.
+	public void Quit()
     {
 		Application.Quit();
 	}
-
 }
