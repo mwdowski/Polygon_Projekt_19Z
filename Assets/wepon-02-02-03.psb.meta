@@ -1,0 +1,385 @@
+fileFormatVersion: 2
+guid: 3601a203298753042ab961b6e46d69fa
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 1
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    isReadable: 0
+    streamingMipmaps: 1
+    streamingMipmapsPriority: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+  spriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 0, y: 0}
+  mosaicSpriteImportData: []
+  rigSpriteImportData:
+  - name: <grupa>
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 446
+      y: 67
+      width: 44
+      height: 55
+    spriteID: c01e2a751bfd64f4897faa21def81e39
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 313, y: -150}
+  - name: <grupa>_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 446
+      y: 4
+      width: 45
+      height: 55
+    spriteID: dfa1548e86a68c34e90043dbcd070bc2
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 226, y: -71}
+  - name: <grupa>_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 300
+      y: 4
+      width: 138
+      height: 171
+    spriteID: 6ab30e335fea07146a6d1c411510a5f8
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 246, y: -9}
+  - name: "<Elipsa>\_+\_<Prostok\u0105t>\_+\_<Prostok\u0105t>\_+\_<Prostok\u0105t>\_+\_<Prostok\u0105t>"
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 130
+      y: 251
+      width: 130
+      height: 67
+    spriteID: 6173f3adae8960743a08ce3dc70b0faf
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -303, y: 234}
+  - name: "<Prostok\u0105t>\_+\_<Prostok\u0105t>\_+\_<Elipsa>\_+\_<Elipsa>"
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 130
+      y: 200
+      width: 235
+      height: 43
+    spriteID: c5bb28e7a01e02c45862bcc8bc5552fd
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -190, y: 4}
+  - name: <grupa>_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 288
+      height: 188
+    spriteID: c5b28ad277761c5418d01978478714e7
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -279, y: -63}
+  - name: <grupa>_4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 200
+      width: 118
+      height: 124
+    spriteID: 959ea99ea4c735e4098e6dd763c8d59d
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -308, y: 169}
+  - name: Warstwa 2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 446
+      y: 130
+      width: 43
+      height: 26
+    spriteID: 2f80e2685ebd5404bbec28c2c7c6ba1f
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 217, y: -34}
+  - name: "<Prostok\u0105t>\_+\_<Prostok\u0105t>\_+\_<Plik po\u0142\u0105czony>\_+\_<Elipsa>\_+\_<Prostok\u0105t>\_+\_<Elipsa>\_+\_<Prostok\u0105t>\_+\_<Prostok\u0105t>\_+\_<Prostok\u0105t>"
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 446
+      y: 164
+      width: 43
+      height: 26
+    spriteID: e889da681e142bc409e98061392a255f
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 217, y: -35}
+  platformSettings: []
+  mosaicLayers: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 7
+  importHiddenLayers: 0
+  importedTextureWidth: 512
+  importedTextureHeight: 512
+  documentSize: {x: 621, y: 309}
+  paperDollMode: 0
+  keepDupilcateSpriteName: 0
+  spriteCategoryList:
+    categories: []
+  textureActualWidth: 512
+  textureActualHeight: 512
+  spritePackingTag: 
+  resliceFromLayer: 0
+  characterMode: 1
+  mosaicPSDLayers: []
+  rigPSDLayers:
+  - name: Warstwa 1
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 
+    layerID: 10
+    mosaicPosition: {x: 0, y: 0}
+  - name: <grupa>
+    spriteName: <grupa>
+    isGroup: 0
+    parentIndex: 0
+    spriteID: c01e2a751bfd64f4897faa21def81e39
+    layerID: 9
+    mosaicPosition: {x: 446, y: 67}
+  - name: <grupa>
+    spriteName: <grupa>_1
+    isGroup: 0
+    parentIndex: 0
+    spriteID: dfa1548e86a68c34e90043dbcd070bc2
+    layerID: 8
+    mosaicPosition: {x: 446, y: 4}
+  - name: <grupa>
+    spriteName: <grupa>_2
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 6ab30e335fea07146a6d1c411510a5f8
+    layerID: 7
+    mosaicPosition: {x: 300, y: 4}
+  - name: "<Elipsa>\_+\_<Prostok\u0105t>\_+\_<Prostok\u0105t>\_+\_<Prostok\u0105t>\_+\_<Prostok\u0105t>"
+    spriteName: "<Elipsa>\_+\_<Prostok\u0105t>\_+\_<Prostok\u0105t>\_+\_<Prostok\u0105t>\_+\_<Prostok\u0105t>"
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 6173f3adae8960743a08ce3dc70b0faf
+    layerID: 6
+    mosaicPosition: {x: 130, y: 251}
+  - name: "<Prostok\u0105t>\_+\_<Prostok\u0105t>\_+\_<Elipsa>\_+\_<Elipsa>"
+    spriteName: "<Prostok\u0105t>\_+\_<Prostok\u0105t>\_+\_<Elipsa>\_+\_<Elipsa>"
+    isGroup: 0
+    parentIndex: -1
+    spriteID: c5bb28e7a01e02c45862bcc8bc5552fd
+    layerID: 5
+    mosaicPosition: {x: 130, y: 200}
+  - name: <grupa>
+    spriteName: <grupa>_3
+    isGroup: 0
+    parentIndex: -1
+    spriteID: c5b28ad277761c5418d01978478714e7
+    layerID: 4
+    mosaicPosition: {x: 4, y: 4}
+  - name: <grupa>
+    spriteName: <grupa>_4
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 959ea99ea4c735e4098e6dd763c8d59d
+    layerID: 3
+    mosaicPosition: {x: 4, y: 200}
+  - name: Warstwa 2
+    spriteName: Warstwa 2
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 2f80e2685ebd5404bbec28c2c7c6ba1f
+    layerID: 12
+    mosaicPosition: {x: 446, y: 130}
+  - name: "<Prostok\u0105t>\_+\_<Prostok\u0105t>\_+\_<Plik po\u0142\u0105czony>\_+\_<Elipsa>\_+\_<Prostok\u0105t>\_+\_<Elipsa>\_+\_<Prostok\u0105t>\_+\_<Prostok\u0105t>\_+\_<Prostok\u0105t>"
+    spriteName: "<Prostok\u0105t>\_+\_<Prostok\u0105t>\_+\_<Plik po\u0142\u0105czony>\_+\_<Elipsa>\_+\_<Prostok\u0105t>\_+\_<Elipsa>\_+\_<Prostok\u0105t>\_+\_<Prostok\u0105t>\_+\_<Prostok\u0105t>"
+    isGroup: 0
+    parentIndex: -1
+    spriteID: e889da681e142bc409e98061392a255f
+    layerID: 2
+    mosaicPosition: {x: 446, y: 164}
+  characterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+  boneGOs: []
+  generateGOHierarchy: 0
+  textureAssetName: wepon-02-02-03 Texture
+  prefabAssetName: wepon-02-02-03 Prefab
+  spriteLibAssetName: wepon-02-02-03 Sprite Lib
