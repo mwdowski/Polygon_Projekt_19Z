@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
 
 
 public class MainMenu : MonoBehaviour
@@ -68,7 +69,7 @@ public class MainMenu : MonoBehaviour
 
 	public void PlayGame()
 	{
-		//TODO: 
+		SceneManager.LoadScene("Game", LoadSceneMode.Single);
 	}
 
 	//Stworzenie menu opcji i przejscie do niego.
