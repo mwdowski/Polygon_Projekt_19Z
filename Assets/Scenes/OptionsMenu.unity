@@ -934,10 +934,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22f245bb98f47d541922f72f5b08caa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testValue: 2137
-  multiplier: 1
-  anotherMultiplier: 1
-  yetAnotherMultiplier: 1
   addButton: {fileID: 740613700}
   substractButton: {fileID: 686400467}
   multiplyToggle: {fileID: 598217013}
