@@ -25,6 +25,11 @@ public class SliderControl : BaseControl
         return slider.value;
     }
 
+    public void SetValue(float newValue)
+    {
+        slider.value = newValue;
+    }
+
     public override void Show(bool show)
     {
         control.SetActive(show);

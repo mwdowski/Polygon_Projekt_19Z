@@ -24,6 +24,10 @@ public class ToggleControl : BaseControl
     {
         return toggle.isOn;
     }
+    public void SetValue(bool newValue)
+    {
+        toggle.isOn = newValue;
+    }
 
     public override void Show(bool show)
     {

@@ -16,7 +16,16 @@ public class UITest : MonoBehaviour
     */
 
     // controlValues - wartości ustawione za pomocą kontrolek
-    private Dictionary<string, float> controlValues;
+    private Dictionary<string, float> controlValues = new Dictionary<string, float>();
+
+    // defaultControlValues - wartości ustawione za pomocą kontrolek
+    private static readonly Dictionary<string, float> defaultControlValues = new Dictionary<string, float>()
+    {
+        {"testValue", 2137f}, // testValue - value that is going to change when AddTest() or SubstractTest() is called
+        {"multiplier", 1f}, // multiplier - value that is going to change when TestMultiplier() is called
+        {"anotherMultiplier", 1f}, // anotherMultiplier - value that is going to change when TestAnotherMultiplier() is called
+        {"yetAnotherMultiplier", 1f} // yetAnotherMultiplier - value that is going to change when TestYetAnotherMultiplier() is called
+    };
 
     // controls - kontrolki
     private Dictionary<string, BaseControl> controls;
@@ -33,23 +42,18 @@ public class UITest : MonoBehaviour
     // sliderPrefab - prefab of slider that will be created by createButton
     [SerializeField] private GameObject sliderPrefab;
     // canvas - canvas on which all controls are located
-    [SerializeField] private GameObject canvas;
+    // [SerializeField] private GameObject canvas;
+    // saveButton - przycisk do zapisywania 
+    [SerializeField] private GameObject saveButton;
+    // returnDefaultButton - przycisk do powrotu do domyślnych ustawień
+    [SerializeField] private GameObject returnDefaultButton;
+
 
     // toShowAndHideList - list of controls of which display should be controlled
-    List<GameObject> toShowAndHideList = new List<GameObject>();
-
+    // private List<GameObject> toShowAndHideList;
 
     private void Start()
     {
-        // dodanie wartosci do regulowania kontrolkami
-        controlValues = new Dictionary<string, float>()
-        {
-            {"testValue", 2137f}, // testValue - value that is going to change when AddTest() or SubstractTest() is called
-            {"multiplier", 1f}, // multiplier - value that is going to change when TestMultiplier() is called
-            {"anotherMultiplier", 1f}, // anotherMultiplier - value that is going to change when TestAnotherMultiplier() is called
-            {"yetAnotherMultiplier", 1f} // yetAnotherMultiplier - value that is going to change when TestYetAnotherMultiplier() is called
-        };
-
         // dodanie listy kontrolek
         controls = new Dictionary<string, BaseControl>()
         {
@@ -58,8 +62,13 @@ public class UITest : MonoBehaviour
             {"multiplyToggle", new ToggleControl(multiplyToggle)},
             {"showAndHideToggle", new ToggleControl(showAndHideToggle)},
             {"multiplySlider", new SliderControl(multiplySlider)},
-            {"createButton", new ButtonControl(createButton)}
+            {"createButton", new ButtonControl(createButton)},
+            {"saveButton", new ButtonControl(saveButton)},
+            {"returnDefaultButton", new ButtonControl(returnDefaultButton)}
         };
+
+        // wczytanie wartosci do regulowania kontrolkami (wraz z ich odpowiednim ustawieniem) - dlatego to musi nastąpić PO stworzeniu słownika z kontrolkami
+        LoadValues();
 
         //toShowAndHideList.Add(addButton);
         //toShowAndHideList.Add(substractButton);
@@ -107,31 +116,82 @@ public class UITest : MonoBehaviour
             }
         });
         controls["createButton"].SetUpListener(CreateNewSlider);
+        controls["saveButton"].SetUpListener(SaveValues);
+        controls["returnDefaultButton"].SetUpListener(ReturnDefaultValues);
     }
 
-    // TestAdd adds multiplier to testValue
+    private void LoadValues()
+    {
+        // wczytuje wartości z pliku
+        float test;
+        // dla każdej pary w słowniku z domyślnymi wartościami pętla próbuje przypisać wczytaną wartość z pliku o odpowiedniej nazwie
+        // jeśli nie uda się wczytać wartości z pliku, to podaje wartość domyślną, która zapisana jest w iterowanym słowniku
+        foreach (KeyValuePair<string, float> element in defaultControlValues)
+        {
+            test = PlayerPrefs.GetFloat(element.Key, element.Value);
+            Debug.Log(test.ToString());
+            controlValues[element.Key] = test;
+        }
+        SetControlsValues();
+
+        Debug.Log("wczytane wartości:" + controlValues.ToString());
+    }
+
+    private void SetControlsValues()
+    {
+        // ustawienie wartosci na kontrolkach, na których te wartości widać
+
+        ((ToggleControl)controls["multiplyToggle"]).SetValue(controlValues["multiplier"] != 1f);
+        ((SliderControl)controls["multiplySlider"]).SetValue(controlValues["anotherMultiplier"]);
+        if (controls.ContainsKey("anotherMultiplySlider"))
+        {
+            ((SliderControl)controls["anotherMultiplySlider"]).SetValue(controlValues["yetAnotherMultiplier"]);
+        }
+    }
+
+    private void ReturnDefaultValues()
+    {
+        // ustawia wartości kontrolek na domyślne
+        // zapisanie ich wymaga jednak użycia SaveValues
+
+        controlValues = defaultControlValues;
+        SetControlsValues();
+    }
+
+    private void SaveValues()
+    {
+        // zapisuje wartości do pliku
+
+        Debug.Log("próba zapisania wartości:" + controlValues.ToString());
+
+        foreach (KeyValuePair<string, float> element in controlValues)
+        {
+            PlayerPrefs.SetFloat(element.Key, element.Value);
+        }
+    }
+
     private void TestAdd()
     {
+        // TestAdd adds multiplier to testValue
+
         controlValues["testValue"] += controlValues["multiplier"] * controlValues["anotherMultiplier"] * controlValues["yetAnotherMultiplier"];
 
         Debug.Log("controlValues[\"testValue\"] = " + controlValues["testValue"].ToString());
-
-        return;
     }
 
-    // TestAdd substracts multiplier from testValue
     private void TestSubstract()
     {
+        // TestAdd substracts multiplier from testValue
+
         controlValues["testValue"] -= controlValues["multiplier"] * controlValues["anotherMultiplier"] * controlValues["yetAnotherMultiplier"];
 
         Debug.Log("controlValues[\"testValue\"] = " + controlValues["testValue"].ToString());
-
-        return;
     }
 
-    // TestMultiplier changes multiplier
     private void TestMultiplier()
     {
+        // TestMultiplier changes multiplier
+
         if (controlValues["multiplier"] != 1f)
         {
             controlValues["multiplier"] = 1f;
@@ -142,33 +202,30 @@ public class UITest : MonoBehaviour
         }
 
         Debug.Log("controlValues[\"multiplier\"] = " + controlValues["multiplier"].ToString());
-
-        return;
     }
 
-    // TestAnotherMultiplier changes anotherMultiplier
     private void TestAnotherMultiplier(float value)
     {
+        // TestAnotherMultiplier changes anotherMultiplier
+
         controlValues["anotherMultiplier"] = value;
 
         Debug.Log("controlValues[\"anotherMultiplier\"] = " + controlValues["anotherMultiplier"].ToString());
-
-        return;
     }
 
-    // TestYetAnotherMultiplier changes anotherMultiplier
     private void TestYetAnotherMultiplier(float value)
     {
+        // TestYetAnotherMultiplier changes anotherMultiplier
+
         controlValues["yetAnotherMultiplier"] = value;
 
         Debug.Log("controlValues[\"yetAnotherMultiplier\"] = " + controlValues["yetAnotherMultiplier"].ToString());
-
-        return;
     }
 
-    // ShowControl turns on display of controls
     private void ShowControls()
     {
+        // ShowControl turns on display of controls
+
         Debug.Log("Włączono wyświetlanie kontrolek");
         ((ToggleControl) controls["showAndHideToggle"]).control.GetComponentInChildren<Text>().text = "Hide controls";
         foreach (KeyValuePair<string, BaseControl> element in controls)
@@ -178,9 +235,10 @@ public class UITest : MonoBehaviour
         }
     }
 
-    // HideControl turns off display of controls
     private void HideControls()
     {
+        // HideControl turns off display of controls
+
         Debug.Log("Wyłączono wyświetlanie kontrolek");
         ((ToggleControl) controls["showAndHideToggle"]).control.GetComponentInChildren<Text>().text = "Show controls";
         foreach (KeyValuePair<string, BaseControl> element in controls)
@@ -190,11 +248,12 @@ public class UITest : MonoBehaviour
         }
     }
 
-    // CreateNewSlider - creates new slider
     private void CreateNewSlider() 
     {
-        // create new slider from prefab and save it as anotherMultiplySlider, as child of canvas
-        anotherMultiplySlider = Instantiate(sliderPrefab, canvas.transform);
+        // CreateNewSlider - creates new slider
+
+        // create new slider from prefab and save it as anotherMultiplySlider
+        anotherMultiplySlider = Instantiate(sliderPrefab, transform.parent);
 
         // set createButton as disabled, so no more sliders will be created
         createButton.GetComponent<Button>().interactable = false;
@@ -202,6 +261,7 @@ public class UITest : MonoBehaviour
         // set properties of anotherMultiplySlider
         anotherMultiplySlider.GetComponent<Slider>().minValue = 1;
         anotherMultiplySlider.GetComponent<Slider>().maxValue = 10;
+        anotherMultiplySlider.GetComponent<Slider>().value = controlValues["yetAnotherMiltiplier"];
         anotherMultiplySlider.transform.GetChild(3).gameObject.GetComponent<Text>().text = "1";
         anotherMultiplySlider.transform.GetChild(4).gameObject.GetComponent<Text>().text = "10";
         anotherMultiplySlider.transform.GetChild(5).gameObject.GetComponent<Text>().text = "EVEN BIGGER";
@@ -210,7 +270,7 @@ public class UITest : MonoBehaviour
         // add anotherMultiplySlider to list of controls
         //toShowAndHideList.Add(anotherMultiplySlider);
         controls.Add("anotherMultiplySlider", new SliderControl(anotherMultiplySlider));
-
+        
         // set up a listener
         //anotherMultiplySlider.GetComponent<Slider>().onValueChanged.AddListener(delegate { TestYetAnotherMultiplier(anotherMultiplySlider.GetComponent<Slider>().value); });
         controls["anotherMultiplySlider"].SetUpListener(delegate { TestYetAnotherMultiplier(((SliderControl) controls["anotherMultiplySlider"]).GetValue()); });
