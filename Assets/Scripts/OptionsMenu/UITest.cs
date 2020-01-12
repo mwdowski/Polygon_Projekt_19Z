@@ -64,7 +64,8 @@ public class UITest : MonoBehaviour
             {"multiplySlider", new SliderControl(multiplySlider)},
             {"createButton", new ButtonControl(createButton)},
             {"saveButton", new ButtonControl(saveButton)},
-            {"returnDefaultButton", new ButtonControl(returnDefaultButton)}
+            {"returnDefaultButton", new ButtonControl(returnDefaultButton)},
+            {"anotherMultiplySlider", null }
         };
 
         // wczytanie wartosci do regulowania kontrolkami (wraz z ich odpowiednim ustawieniem) - dlatego to musi nastąpić PO stworzeniu słownika z kontrolkami
@@ -143,7 +144,7 @@ public class UITest : MonoBehaviour
 
         ((ToggleControl)controls["multiplyToggle"]).SetValue(controlValues["multiplier"] != 1f);
         ((SliderControl)controls["multiplySlider"]).SetValue(controlValues["anotherMultiplier"]);
-        if (controls.ContainsKey("anotherMultiplySlider"))
+        if (controls["anotherMultiplySlider"] != null)
         {
             ((SliderControl)controls["anotherMultiplySlider"]).SetValue(controlValues["yetAnotherMultiplier"]);
         }
@@ -261,7 +262,7 @@ public class UITest : MonoBehaviour
         // set properties of anotherMultiplySlider
         anotherMultiplySlider.GetComponent<Slider>().minValue = 1;
         anotherMultiplySlider.GetComponent<Slider>().maxValue = 10;
-        anotherMultiplySlider.GetComponent<Slider>().value = controlValues["yetAnotherMiltiplier"];
+        anotherMultiplySlider.GetComponent<Slider>().value = controlValues["yetAnotherMultiplier"];
         anotherMultiplySlider.transform.GetChild(3).gameObject.GetComponent<Text>().text = "1";
         anotherMultiplySlider.transform.GetChild(4).gameObject.GetComponent<Text>().text = "10";
         anotherMultiplySlider.transform.GetChild(5).gameObject.GetComponent<Text>().text = "EVEN BIGGER";
@@ -269,7 +270,7 @@ public class UITest : MonoBehaviour
 
         // add anotherMultiplySlider to list of controls
         //toShowAndHideList.Add(anotherMultiplySlider);
-        controls.Add("anotherMultiplySlider", new SliderControl(anotherMultiplySlider));
+        controls["anotherMultiplySlider"] = new SliderControl(anotherMultiplySlider);
         
         // set up a listener
         //anotherMultiplySlider.GetComponent<Slider>().onValueChanged.AddListener(delegate { TestYetAnotherMultiplier(anotherMultiplySlider.GetComponent<Slider>().value); });
