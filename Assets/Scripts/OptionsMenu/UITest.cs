@@ -118,7 +118,7 @@ public class UITest : MonoBehaviour
         });
         controls["createButton"].SetUpListener(CreateNewSlider);
         controls["saveButton"].SetUpListener(SaveValues);
-        controls["returnDefaultButton"].SetUpListener(ReturnDefaultValues);
+        controls["returnDefaultButton"].SetUpListener(SetDefaultValues);
     }
 
     private void LoadValues()
@@ -150,13 +150,19 @@ public class UITest : MonoBehaviour
         }
     }
 
-    private void ReturnDefaultValues()
+    private void SetDefaultValues()
     {
         // ustawia wartości kontrolek na domyślne
         // zapisanie ich wymaga jednak użycia SaveValues
 
-        controlValues = defaultControlValues;
-        SetControlsValues();
+        ((ToggleControl)controls["multiplyToggle"]).SetValue(false);
+        ((SliderControl)controls["multiplySlider"]).SetValue(defaultControlValues["anotherMultiplier"]);
+        if (controls["anotherMultiplySlider"] != null)
+        {
+            ((SliderControl)controls["anotherMultiplySlider"]).SetValue(defaultControlValues["yetAnotherMultiplier"]);
+        }
+
+        controlValues["testValue"] = defaultControlValues["testValue"];
     }
 
     private void SaveValues()
