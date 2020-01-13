@@ -69,11 +69,7 @@ public class MainMenu : MonoBehaviour
 
 	public void StartGame()
 	{
-<<<<<<< HEAD:Assets/Scripts/Menus/MainMenu.cs
-		//TODO: Uruchamianie sceny z rozgrywką.
-=======
 		SceneManager.LoadScene("Game", LoadSceneMode.Single);
->>>>>>> Game_Scene:Assets/Scripts/MainMenu.cs
 	}
 
 	public void OpenHowToPlay()
