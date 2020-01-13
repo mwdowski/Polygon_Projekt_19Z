@@ -6,7 +6,7 @@ MonoImporter:
   defaultReferences:
   - howToPlayMenuPrefab: {fileID: 7198400805047085718, guid: 89b286124c4908d4e85f119cea5081b5,
       type: 3}
-  - optionsMenuPrefab: {fileID: 7385342652873288856, guid: ffd8fff75dd84214da460275e8ffd854,
+  - optionsMenuPrefab: {fileID: 816583882401164051, guid: ffd8fff75dd84214da460275e8ffd854,
       type: 3}
   - creditsMenuPrefab: {fileID: 1209234917986354148, guid: 35733800c7464de499727f72e0d4493f,
       type: 3}

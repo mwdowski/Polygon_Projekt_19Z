@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.Assertions;
+
 
 public class ButtonControl : BaseControl
 {
-    // Miejsce na GameObject z komponentem
-    public GameObject control;
-    // Miejsce na komponenty
     private Button button;
 
-    public ButtonControl(GameObject gameObject)
+
+    public ButtonControl(GameObject gameObject) : base(gameObject)
     {
-        control = gameObject;
         button = control.GetComponent<Button>();
+        Assert.IsNotNull(button);
     }
 
     public override void SetUpListener(UnityAction action)
@@ -20,7 +20,7 @@ public class ButtonControl : BaseControl
         button.onClick.AddListener(action);
     }
 
-    public override void Show(bool show)
+    public override void SetShow(bool show)
     {
         control.SetActive(show);
     }

@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.Assertions;
+
 
 public class ToggleControl : BaseControl
 {
-    // Miejsce na GameObject z komponentem
-    public GameObject control;
     // Miejsce na komponenty
     private Toggle toggle;
 
-    public ToggleControl(GameObject gameObject)
+
+    public ToggleControl(GameObject gameObject) : base(gameObject)
     {
-        control = gameObject;
         toggle = control.GetComponent<Toggle>();
+        Assert.IsNotNull(toggle);
     }
 
     public override void SetUpListener(UnityAction action)
@@ -24,12 +25,13 @@ public class ToggleControl : BaseControl
     {
         return toggle.isOn;
     }
+
     public void SetValue(bool newValue)
     {
         toggle.isOn = newValue;
     }
 
-    public override void Show(bool show)
+    public override void SetShow(bool show)
     {
         control.SetActive(show);
     }

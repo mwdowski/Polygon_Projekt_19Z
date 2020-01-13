@@ -30,7 +30,7 @@ RectTransform:
   m_Children:
   - {fileID: 7129384469734333937}
   - {fileID: 4535765747353831856}
-  - {fileID: 7413718440952016311}
+  - {fileID: 1498024672881932943}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3e513923aa6aa643b59d5934677d88e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 7413718440952016310}
+  backButton: {fileID: 1498024672881932942}
 --- !u!1 &7129384469734333938
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,7 +242,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1001 &1805842958103326901
+--- !u!1001 &7721272847744853901
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -317,12 +317,12 @@ PrefabInstance:
     - target: {fileID: 9218152922458004738, guid: 8adc45b32c39ec9479519b331407ce34,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9218152922458004738, guid: 8adc45b32c39ec9479519b331407ce34,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 165
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 9218152922458004738, guid: 8adc45b32c39ec9479519b331407ce34,
         type: 3}
@@ -384,19 +384,24 @@ PrefabInstance:
       propertyPath: m_text
       value: Back
       objectReference: {fileID: 0}
+    - target: {fileID: 9218152923417585562, guid: 8adc45b32c39ec9479519b331407ce34,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8adc45b32c39ec9479519b331407ce34, type: 3}
---- !u!224 &7413718440952016311 stripped
+--- !u!224 &1498024672881932943 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9218152922458004738, guid: 8adc45b32c39ec9479519b331407ce34,
     type: 3}
-  m_PrefabInstance: {fileID: 1805842958103326901}
+  m_PrefabInstance: {fileID: 7721272847744853901}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7413718440952016310 stripped
+--- !u!114 &1498024672881932942 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9218152922458004739, guid: 8adc45b32c39ec9479519b331407ce34,
     type: 3}
-  m_PrefabInstance: {fileID: 1805842958103326901}
+  m_PrefabInstance: {fileID: 7721272847744853901}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1

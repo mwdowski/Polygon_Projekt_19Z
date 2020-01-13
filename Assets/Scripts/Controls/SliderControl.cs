@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.Assertions;
+
 
 public class SliderControl : BaseControl
 {
-    // Miejsce na GameObject z komponentem
-    public GameObject control;
-    // Miejsce na komponenty
     private Slider slider;
 
-    public SliderControl(GameObject gameObject)
+
+    public SliderControl(GameObject gameObject) : base(gameObject)
     {
-        control = gameObject;
         slider = control.GetComponent<Slider>();
+        Assert.IsNotNull(slider);
     }
 
     public override void SetUpListener(UnityAction action)
@@ -30,7 +30,7 @@ public class SliderControl : BaseControl
         slider.value = newValue;
     }
 
-    public override void Show(bool show)
+    public override void SetShow(bool show)
     {
         control.SetActive(show);
     }
