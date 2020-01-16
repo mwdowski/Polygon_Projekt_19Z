@@ -6,8 +6,10 @@ public class CharacterController : MonoBehaviour
 {
 	[SerializeField] private float moveSpeed = 5.0f;
 	[SerializeField] private float jumpForce = 5.0f;
-	private Rigidbody2D rigidbody;
+	private Rigidbody2D rigidbody = null;
 	public LayerMask Ground;
+	private const float GROUNDED_RAYCAST_DISTANCE = 1.0f;
+
 
 	private void Awake()
 	{
@@ -24,19 +26,13 @@ public class CharacterController : MonoBehaviour
 		rigidbody.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime, rigidbody.velocity.y);
 	}
 
-	bool IsGrounded()
+	private bool IsGrounded()
 	{
-		Vector2 position = transform.position;
-		Vector2 direction = Vector2.down;
-		float distance = 1.0f;
-
-		RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, Ground);
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, GROUNDED_RAYCAST_DISTANCE, Ground);
 		if (hit.collider != null)
 		{
 			return true;
 		}
-
 		return false;
 	}
-
 }
