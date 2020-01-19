@@ -147,6 +147,6 @@ MonoBehaviour:
   Ground:
     serializedVersion: 2
     m_Bits: 4096
-  bulletSpeed: 10000
+  bulletSpeed: 8
   bulletPrefab: {fileID: 8911911260724722353, guid: 2913975f152c21842a75f90f56c0f2c2,
     type: 3}
