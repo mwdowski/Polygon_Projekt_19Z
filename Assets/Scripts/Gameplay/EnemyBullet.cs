@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         string hitTag = collision.gameObject.tag;
         if (hitTag == "Walls")
@@ -21,13 +21,14 @@ public class EnemyBullet : MonoBehaviour
         }
         if (hitTag == "PlayerBullet")
         {
-            Physics2D.IgnoreCollision(collision.collider, gameObject.GetComponent<Collider2D>());
+            Physics2D.IgnoreCollision(collision, gameObject.GetComponent<Collider2D>());
             return;
         }
         if (hitTag == "Enemy")
         {
-            Physics2D.IgnoreCollision(collision.collider, gameObject.GetComponent<Collider2D>());
+            Physics2D.IgnoreCollision(collision, gameObject.GetComponent<Collider2D>());
             return;
         }
+
     }
 }
