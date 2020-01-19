@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -10,7 +12,7 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        if (hitTag == "Enemy")
+        if (hitTag == "Player")
         {
             // TODO: cos tam zabij
             Destroy(collision.gameObject);
@@ -18,6 +20,11 @@ public class Bullet : MonoBehaviour
             return;
         }
         if (hitTag == "PlayerBullet")
+        {
+            Physics2D.IgnoreCollision(collision.collider, gameObject.GetComponent<Collider2D>());
+            return;
+        }
+        if (hitTag == "Enemy")
         {
             Physics2D.IgnoreCollision(collision.collider, gameObject.GetComponent<Collider2D>());
             return;
