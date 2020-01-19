@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
         }
         if (hitTag == "Enemy")
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<EnemyBehaviour>().DecreaseHealthPoints();
             Destroy(gameObject);
             return;
         }

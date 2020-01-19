@@ -23,13 +23,15 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private float shootingStartDelay = 2f;
     [SerializeField] private float shootingTimeDifference = 2.15f;
 
+    [SerializeField] private int healthPoints = 3;
+
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         Assert.IsNotNull(rigidbody);
 
-        // wylosowanie strony - NIE DZIAŁA??? - zawsze jest false
+         // wylosowanie strony, w którą na początku będzie iść przeciwnik
         float randomValue = Random.Range(0, 2);
         isFacingRight = randomValue == 0;
 
@@ -41,6 +43,15 @@ public class EnemyBehaviour : MonoBehaviour
     {
         InvokeRepeating("Jump", jumpingStartDelay, jumpingTimeDifference);
         InvokeRepeating("Shoot", shootingStartDelay, shootingTimeDifference);
+    }
+
+    public void DecreaseHealthPoints()
+    {
+        healthPoints--;
+        if (healthPoints == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Update()
@@ -61,7 +72,11 @@ public class EnemyBehaviour : MonoBehaviour
         string hitTag = collision.gameObject.tag;
         if (hitTag == "Player")
         {
+            /* natychmiastowa śmierć przy dotknięciu gracza przez przeciwnika
             Destroy(collision.gameObject);
+            return;
+            */
+            Physics2D.IgnoreCollision(collision.collider, gameObject.GetComponent<Collider2D>());
             return;
         }
         if (hitTag == "Enemy")

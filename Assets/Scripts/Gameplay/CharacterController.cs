@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.UI;
 
 public class CharacterController : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class CharacterController : MonoBehaviour
 	private static float halfWidth;
 	private GameObject bullet;
 
+	[SerializeField] private int healthPoints = 5;
+	[SerializeField] private GameObject healthbar;
 
 	private void Awake()
 	{
@@ -23,6 +26,24 @@ public class CharacterController : MonoBehaviour
 
 		// znalezienie połowy szerokości - pomoże to przy tworzeniu pocisków
 		halfWidth = GetComponent<Renderer>().bounds.extents.x + bulletPrefab.GetComponent<Renderer>().bounds.extents.x;
+	}
+
+	public void DecreaseHealthPoints()
+	{
+		// zmniejszenie punktów życia
+		healthPoints--;
+
+		// zmiana na pasku życia
+		string healthbarText = healthbar.GetComponent<Text>().text;
+		healthbarText = healthbarText.Remove(healthbarText.Length - 1);
+		healthbar.GetComponent<Text>().text = healthbarText;
+
+		// smierć w wypadku gdy życie spadnie do zera
+		if (healthPoints == 0)
+		{
+			Destroy(gameObject);
+		}
+
 	}
 
 	private void Update()
