@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Assertions;
 
 public class EnemyBehaviour : MonoBehaviour
@@ -11,16 +9,29 @@ public class EnemyBehaviour : MonoBehaviour
     public LayerMask Ground;
     private const float GROUNDED_RAYCAST_DISTANCE = 1.0f;
 
-    private bool isFacingRight = true;
+    private bool isFacingRight;// = true;
     [SerializeField] private float bulletSpeed = 10000f;
     [SerializeField] private GameObject bulletPrefab;
     private static float halfWidth;
     private GameObject bullet;
 
+    public GameObject leftLimitWall;
+    public GameObject rightLimitWall;
+
+    [SerializeField] private float jumpingStartDelay = 4f;
+    [SerializeField] private float jumpingTimeDifference = 3.28f;
+    [SerializeField] private float shootingStartDelay = 2f;
+    [SerializeField] private float shootingTimeDifference = 2.15f;
+
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         Assert.IsNotNull(rigidbody);
+
+        // wylosowanie strony - NIE DZIAŁA??? - zawsze jest false
+        float randomValue = Random.Range(0, 2);
+        isFacingRight = randomValue == 0;
 
         // znalezienie połowy szerokości - pomoże to przy tworzeniu pocisków
         halfWidth = GetComponent<Renderer>().bounds.extents.x + bulletPrefab.GetComponent<Renderer>().bounds.extents.x;
@@ -28,8 +39,21 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("Jump", 4f, 4f);
-        InvokeRepeating("Shoot", 2f, 2f);
+        InvokeRepeating("Jump", jumpingStartDelay, jumpingTimeDifference);
+        InvokeRepeating("Shoot", shootingStartDelay, shootingTimeDifference);
+    }
+
+    private void Update()
+    {
+        // nadanie prędkości zgodnie z kierunkiem patrzenia
+        if (isFacingRight)
+        {
+            rigidbody.velocity = new Vector2(moveSpeed * Time.deltaTime, rigidbody.velocity.y);
+        }
+        else
+        {
+            rigidbody.velocity = new Vector2(-moveSpeed * Time.deltaTime, rigidbody.velocity.y);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -46,6 +70,15 @@ public class EnemyBehaviour : MonoBehaviour
             return;
         }
 
+        // zmiana kierunku przy podejściu do ściany
+        if (collision.gameObject.Equals(leftLimitWall))
+        {
+            isFacingRight = true;
+        }
+        if (collision.gameObject.Equals(rightLimitWall))
+        {
+            isFacingRight = false;
+        }
     }
 
     private void Shoot()

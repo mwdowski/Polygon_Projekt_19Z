@@ -12,7 +12,6 @@ public class Bullet : MonoBehaviour
         }
         if (hitTag == "Enemy")
         {
-            // TODO: cos tam zabij
             Destroy(collision.gameObject);
             Destroy(gameObject);
             return;
@@ -22,6 +21,5 @@ public class Bullet : MonoBehaviour
             Physics2D.IgnoreCollision(collision, gameObject.GetComponent<Collider2D>());
             return;
         }
-
     }
 }

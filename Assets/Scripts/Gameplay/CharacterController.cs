@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
 
-
 public class CharacterController : MonoBehaviour
 {
 	[SerializeField] private float moveSpeed = 5.0f;

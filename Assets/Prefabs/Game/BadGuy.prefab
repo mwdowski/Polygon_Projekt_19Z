@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a3c7810f9406fb4398aa05daf8d2460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 350
+  moveSpeed: 200
   jumpForce: 300
   Ground:
     serializedVersion: 2
@@ -150,3 +150,5 @@ MonoBehaviour:
   bulletSpeed: 8
   bulletPrefab: {fileID: 8911911260724722353, guid: 2913975f152c21842a75f90f56c0f2c2,
     type: 3}
+  leftLimitWall: {fileID: 0}
+  rightLimitWall: {fileID: 0}

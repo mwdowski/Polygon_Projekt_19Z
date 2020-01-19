@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
@@ -14,7 +12,6 @@ public class EnemyBullet : MonoBehaviour
         }
         if (hitTag == "Player")
         {
-            // TODO: cos tam zabij
             Destroy(collision.gameObject);
             Destroy(gameObject);
             return;
@@ -29,6 +26,5 @@ public class EnemyBullet : MonoBehaviour
             Physics2D.IgnoreCollision(collision, gameObject.GetComponent<Collider2D>());
             return;
         }
-
     }
 }
