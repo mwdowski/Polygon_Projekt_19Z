@@ -10,6 +10,7 @@ public class CharacterController : MonoBehaviour
 	public LayerMask Ground;
 	private const float GROUNDED_RAYCAST_DISTANCE = 1.0f;
 
+	private bool isFacingRight = true;
 	[SerializeField] private float bulletSpeed = 10000f;
 	[SerializeField] private GameObject bulletPrefab;
 	private static float halfWidth;
@@ -35,18 +36,26 @@ public class CharacterController : MonoBehaviour
 
 		rigidbody.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime, rigidbody.velocity.y);
 
+		// ustalenie, w którą stronę gracz "patrzy", czyli w którą stornę szedł ostatnio
+		if (rigidbody.velocity.x > 0)
+		{
+			isFacingRight = true;
+		}
+		if (rigidbody.velocity.x < 0)
+		{
+			isFacingRight = false;
+		}
+
 		// strzał - strzelamy klawiszem "F"
 		if (Input.GetKeyDown(KeyCode.F))
 		{
-			if (rigidbody.velocity.x >= 0)
+			if (isFacingRight)
 			{
-				// idzie wprawo lub stoi w miejscu
 				bullet = Instantiate(bulletPrefab, new Vector3(transform.position.x + halfWidth, transform.position.y, transform.position.z), transform.rotation);
 				bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletSpeed, 0);
 			}
 			else
 			{
-				//idzie w lewo
 				bullet = Instantiate(bulletPrefab, new Vector3(transform.position.x - halfWidth, transform.position.y, transform.position.z), transform.rotation);
 
 				// ta część kodu obraca pocisk tak, by leciał w drugą stronę
