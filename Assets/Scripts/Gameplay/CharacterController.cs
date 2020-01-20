@@ -2,6 +2,7 @@
 using UnityEngine.Assertions;
 using UnityEngine.UI;
 
+
 public class CharacterController : MonoBehaviour
 {
 	[SerializeField] private float moveSpeed = 5.0f;
@@ -9,18 +10,39 @@ public class CharacterController : MonoBehaviour
 	private Rigidbody2D rigidbody = null;
 	public LayerMask Ground;
 	private const float GROUNDED_RAYCAST_DISTANCE = 1.0f;
+	private SpriteRenderer spriteRenderer = null;
 
 	private bool isFacingRight = true;
-	[SerializeField] private float bulletSpeed = 10000f;
-	[SerializeField] private GameObject bulletPrefab;
-	private static float halfWidth;
-	private GameObject bullet;
+	[SerializeField] private float bulletSpeed = 40000f;
+	[SerializeField] private GameObject bulletPrefab = null;
+	private static float halfWidth = 0.0f;
+	private GameObject bullet = null;
 
 	[SerializeField] private int healthPoints = 5;
-	[SerializeField] private GameObject healthbar;
+	[SerializeField] private GameObject healthbar = null;
+
+
+	private bool IsFacingRight
+	{
+		get
+		{
+			return isFacingRight;
+		}
+
+		set
+		{
+			isFacingRight = value;
+			spriteRenderer.flipX = !isFacingRight;
+		}
+	}
+
+
 
 	private void Awake()
 	{
+		spriteRenderer = GetComponent<SpriteRenderer>();
+		Assert.IsNotNull(spriteRenderer);
+
 		rigidbody = GetComponent<Rigidbody2D>();
 		Assert.IsNotNull(rigidbody);
 
@@ -43,7 +65,6 @@ public class CharacterController : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-
 	}
 
 	private void Update()
@@ -59,17 +80,17 @@ public class CharacterController : MonoBehaviour
 		// ustalenie, w którą stronę gracz "patrzy", czyli w którą stornę szedł ostatnio
 		if (rigidbody.velocity.x > 0)
 		{
-			isFacingRight = true;
+			IsFacingRight = true;
 		}
 		if (rigidbody.velocity.x < 0)
 		{
-			isFacingRight = false;
+			IsFacingRight = false;
 		}
 
-		// strzał - strzelamy klawiszem "F"
-		if (Input.GetKeyDown(KeyCode.F))
+		// strzał - strzelamy klawiszem "Lewy Control"
+		if (Input.GetKeyDown(KeyCode.LeftControl))
 		{
-			if (isFacingRight)
+			if (IsFacingRight)
 			{
 				bullet = Instantiate(bulletPrefab, new Vector3(transform.position.x + halfWidth, transform.position.y, transform.position.z), transform.rotation);
 				bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletSpeed, 0);

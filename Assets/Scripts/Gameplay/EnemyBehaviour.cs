@@ -9,14 +9,15 @@ public class EnemyBehaviour : MonoBehaviour
     public LayerMask Ground;
     private const float GROUNDED_RAYCAST_DISTANCE = 1.0f;
 
-    private bool isFacingRight;// = true;
+    private bool isFacingRight = false;
     [SerializeField] private float bulletSpeed = 10000f;
-    [SerializeField] private GameObject bulletPrefab;
-    private static float halfWidth;
-    private GameObject bullet;
+    [SerializeField] private GameObject bulletPrefab = null;
+    private static float halfWidth = 0.0f;
+    private GameObject bullet = null;
+    private SpriteRenderer spriteRenderer = null;
 
-    public GameObject leftLimitWall;
-    public GameObject rightLimitWall;
+    public GameObject leftLimitWall = null;
+    public GameObject rightLimitWall = null;
 
     [SerializeField] private float jumpingStartDelay = 4f;
     [SerializeField] private float jumpingTimeDifference = 3.28f;
@@ -26,14 +27,32 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private int healthPoints = 3;
 
 
+    private bool IsFacingRight
+    {
+        get
+        {
+            return isFacingRight;
+        }
+
+        set
+        {
+            isFacingRight = value;
+            spriteRenderer.flipX = !isFacingRight;
+        }
+    }
+
+
     private void Awake()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        Assert.IsNotNull(spriteRenderer);
+
         rigidbody = GetComponent<Rigidbody2D>();
         Assert.IsNotNull(rigidbody);
 
          // wylosowanie strony, w którą na początku będzie iść przeciwnik
         float randomValue = Random.Range(0, 2);
-        isFacingRight = randomValue == 0;
+        IsFacingRight = randomValue == 0;
 
         // znalezienie połowy szerokości - pomoże to przy tworzeniu pocisków
         halfWidth = GetComponent<Renderer>().bounds.extents.x + bulletPrefab.GetComponent<Renderer>().bounds.extents.x;
@@ -57,7 +76,7 @@ public class EnemyBehaviour : MonoBehaviour
     private void Update()
     {
         // nadanie prędkości zgodnie z kierunkiem patrzenia
-        if (isFacingRight)
+        if (IsFacingRight)
         {
             rigidbody.velocity = new Vector2(moveSpeed * Time.deltaTime, rigidbody.velocity.y);
         }
@@ -88,17 +107,17 @@ public class EnemyBehaviour : MonoBehaviour
         // zmiana kierunku przy podejściu do ściany
         if (collision.gameObject.Equals(leftLimitWall))
         {
-            isFacingRight = true;
+            IsFacingRight = true;
         }
         if (collision.gameObject.Equals(rightLimitWall))
         {
-            isFacingRight = false;
+            IsFacingRight = false;
         }
     }
 
     private void Shoot()
     {
-        if (isFacingRight)
+        if (IsFacingRight)
         {
             bullet = Instantiate(bulletPrefab, new Vector3(transform.position.x + halfWidth, transform.position.y, transform.position.z), transform.rotation);
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletSpeed, 0);

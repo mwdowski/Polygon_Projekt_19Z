@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefrab;
@@ -9,8 +10,9 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private float directionMultiplier = 1f;
 
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         InvokeRepeating("SpawnEnemy", 2f, 2f);
     }
