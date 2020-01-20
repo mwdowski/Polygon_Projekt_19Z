@@ -131,9 +131,9 @@ GameObject:
   - component: {fileID: 39670891}
   - component: {fileID: 39670893}
   - component: {fileID: 39670892}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Left
-  m_TagString: Untagged
+  m_TagString: Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 303494674}
   m_Layer: 8
   m_Name: WoundingObstacle
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -441,9 +441,9 @@ GameObject:
   - component: {fileID: 358196088}
   - component: {fileID: 358196090}
   - component: {fileID: 358196089}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Top
-  m_TagString: Untagged
+  m_TagString: Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -639,7 +639,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539249152}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.18, y: -3.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -663,6 +663,9 @@ MonoBehaviour:
   Ground:
     serializedVersion: 2
     m_Bits: 4096
+  bulletSpeed: 8
+  bulletPrefab: {fileID: 9120909656714303369, guid: eb7815686dfaba44489d62afba8aee6c,
+    type: 3}
 --- !u!50 &539249157
 Rigidbody2D:
   serializedVersion: 4
@@ -729,9 +732,9 @@ GameObject:
   - component: {fileID: 854980377}
   - component: {fileID: 854980379}
   - component: {fileID: 854980378}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Right
-  m_TagString: Untagged
+  m_TagString: Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -838,7 +841,7 @@ GameObject:
   - component: {fileID: 945680618}
   m_Layer: 12
   m_Name: Platform (1)
-  m_TagString: Untagged
+  m_TagString: Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1177,7 +1180,7 @@ GameObject:
   - component: {fileID: 1457973725}
   m_Layer: 12
   m_Name: Platform (3)
-  m_TagString: Untagged
+  m_TagString: Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1391,7 +1394,7 @@ GameObject:
   - component: {fileID: 1538090435}
   m_Layer: 12
   m_Name: Platform (2)
-  m_TagString: Untagged
+  m_TagString: Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
