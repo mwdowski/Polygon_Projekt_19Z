@@ -6,7 +6,7 @@ public class WoundingObstacle : MonoBehaviour
     {
         if (collision.collider.gameObject.tag == "Player")
         {
-            Destroy(collision.collider.gameObject);
+            collision.collider.GetComponent<CharacterController>().KillPlayer();
         }
     }
 }

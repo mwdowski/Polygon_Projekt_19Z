@@ -19,6 +19,9 @@ public class CharacterController : MonoBehaviour
 	[SerializeField] private int healthPoints = 5;
 	[SerializeField] private GameObject healthbar;
 
+	[SerializeField] private GameObject afterDeathScreen;
+	[SerializeField] private GameObject userInterface;
+
 	private void Awake()
 	{
 		rigidbody = GetComponent<Rigidbody2D>();
@@ -98,7 +101,7 @@ public class CharacterController : MonoBehaviour
 		return false;
 	}
 
-	private void KillPlayer()
+	public void KillPlayer()
 	{
 		Destroy(gameObject);
 	}
