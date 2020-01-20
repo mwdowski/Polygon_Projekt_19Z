@@ -41,9 +41,8 @@ public class CharacterController : MonoBehaviour
 		// smierć w wypadku gdy życie spadnie do zera
 		if (healthPoints == 0)
 		{
-			Destroy(gameObject);
+			KillPlayer();
 		}
-
 	}
 
 	private void Update()
@@ -97,5 +96,10 @@ public class CharacterController : MonoBehaviour
 			return true;
 		}
 		return false;
+	}
+
+	private void KillPlayer()
+	{
+		Destroy(gameObject);
 	}
 }
