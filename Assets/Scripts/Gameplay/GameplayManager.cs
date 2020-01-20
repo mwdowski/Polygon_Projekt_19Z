@@ -2,7 +2,6 @@
 using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
-
 public class GameplayManager : MonoBehaviour
 {
 	[SerializeField] private GameObject playerCharacter;

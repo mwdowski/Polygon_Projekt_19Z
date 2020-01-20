@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -10,13 +10,18 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        if (hitTag == "Enemy")
+        if (hitTag == "Player")
         {
-            collision.gameObject.GetComponent<EnemyBehaviour>().DecreaseHealthPoints();
+            collision.gameObject.GetComponent<CharacterController>().DecreaseHealthPoints();
             Destroy(gameObject);
             return;
         }
         if (hitTag == "PlayerBullet")
+        {
+            Physics2D.IgnoreCollision(collision, gameObject.GetComponent<Collider2D>());
+            return;
+        }
+        if (hitTag == "Enemy")
         {
             Physics2D.IgnoreCollision(collision, gameObject.GetComponent<Collider2D>());
             return;
