@@ -38,6 +38,9 @@ public class CharacterController : MonoBehaviour
 
 
 
+	[SerializeField] private GameObject afterDeathScreen;
+	[SerializeField] private GameObject userInterface;
+
 	private void Awake()
 	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
@@ -63,7 +66,7 @@ public class CharacterController : MonoBehaviour
 		// smierć w wypadku gdy życie spadnie do zera
 		if (healthPoints == 0)
 		{
-			Destroy(gameObject);
+			KillPlayer();
 		}
 	}
 
@@ -118,5 +121,10 @@ public class CharacterController : MonoBehaviour
 			return true;
 		}
 		return false;
+	}
+
+	public void KillPlayer()
+	{
+		Destroy(gameObject);
 	}
 }

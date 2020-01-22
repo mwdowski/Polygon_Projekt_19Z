@@ -69,7 +69,7 @@ public class EnemyBehaviour : MonoBehaviour
         healthPoints--;
         if (healthPoints == 0)
         {
-            Destroy(gameObject);
+            KillEnemy();
         }
     }
 
@@ -134,12 +134,17 @@ public class EnemyBehaviour : MonoBehaviour
             // nadanie prędkości
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(-bulletSpeed, 0);
         }
-
     }
 
     private void Jump()
     {
         rigidbody.AddForce(new Vector2(0.0f, jumpForce));
+    }
+
+    private void KillEnemy()
+    {
+        GameplayManager.GameScore++;
+        Destroy(gameObject);
     }
 
     private bool IsGrounded()
