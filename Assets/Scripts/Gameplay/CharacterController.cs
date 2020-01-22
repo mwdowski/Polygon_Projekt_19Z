@@ -9,8 +9,8 @@ public class CharacterController : MonoBehaviour
 	[SerializeField] private float jumpForce = 10.0f;
 	private Rigidbody2D rigidbody = null;
 	public LayerMask Ground;
-	private const float GROUNDED_RAYCAST_DISTANCE = 1.0f;
-	private SpriteRenderer spriteRenderer = null;
+	private const float GROUNDED_RAYCAST_DISTANCE = 2.0f;
+	[SerializeField] private GameObject body = null;
 
 	private bool isFacingRight = true;
 	[SerializeField] private float bulletSpeed = 40000f;
@@ -32,7 +32,14 @@ public class CharacterController : MonoBehaviour
 		set
 		{
 			isFacingRight = value;
-			spriteRenderer.flipX = !isFacingRight;
+			if (isFacingRight)
+			{
+				body.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+			}
+			else
+			{
+				body.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+			}
 		}
 	}
 
@@ -43,14 +50,14 @@ public class CharacterController : MonoBehaviour
 
 	private void Awake()
 	{
-		spriteRenderer = GetComponent<SpriteRenderer>();
-		Assert.IsNotNull(spriteRenderer);
+		body = transform.GetChild(0).gameObject;
+		Assert.IsNotNull(body);
 
 		rigidbody = GetComponent<Rigidbody2D>();
 		Assert.IsNotNull(rigidbody);
 
 		// znalezienie połowy szerokości - pomoże to przy tworzeniu pocisków
-		halfWidth = GetComponent<Renderer>().bounds.extents.x + bulletPrefab.GetComponent<Renderer>().bounds.extents.x;
+		halfWidth = GetComponent<BoxCollider2D>().size.x / 2.0f;
 	}
 
 	public void DecreaseHealthPoints()
