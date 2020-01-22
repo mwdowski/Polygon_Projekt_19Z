@@ -1,13 +1,12 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
 public class GameplayManager : MonoBehaviour
 {
 	[SerializeField] private GameObject playerCharacter;
-	[SerializeField] private Goal goal;
 	[SerializeField] private GameObject _gameScoreViewer;
 	[SerializeField] private GameObject userInterface;
 	[SerializeField] private GameObject afterDeathScreen;

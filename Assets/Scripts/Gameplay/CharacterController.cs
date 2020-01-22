@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CharacterController : MonoBehaviour
 {
 	[SerializeField] private float moveSpeed = 5.0f;
-	[SerializeField] private float jumpForce = 5.0f;
+	[SerializeField] private float jumpForce = 10.0f;
 	private Rigidbody2D rigidbody = null;
 	public LayerMask Ground;
 	private const float GROUNDED_RAYCAST_DISTANCE = 1.0f;
