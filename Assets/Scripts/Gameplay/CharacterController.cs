@@ -10,7 +10,7 @@ public class CharacterController : MonoBehaviour
 	private Rigidbody2D rigidbody = null;
 	public LayerMask Ground;
 	private const float GROUNDED_RAYCAST_DISTANCE = 2.0f;
-	[SerializeField] private GameObject body = null;
+	private GameObject body = null;
 
 	private bool isFacingRight = true;
 	[SerializeField] private float bulletSpeed = 40000f;
@@ -102,12 +102,12 @@ public class CharacterController : MonoBehaviour
 		{
 			if (IsFacingRight)
 			{
-				bullet = Instantiate(bulletPrefab, new Vector3(transform.position.x + halfWidth, transform.position.y, transform.position.z), transform.rotation);
+				bullet = Instantiate(bulletPrefab, new Vector3(transform.position.x + halfWidth, transform.position.y - 0.55f, transform.position.z), transform.rotation);
 				bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletSpeed, 0);
 			}
 			else
 			{
-				bullet = Instantiate(bulletPrefab, new Vector3(transform.position.x - halfWidth, transform.position.y, transform.position.z), transform.rotation);
+				bullet = Instantiate(bulletPrefab, new Vector3(transform.position.x - halfWidth, transform.position.y - 0.55f, transform.position.z), transform.rotation);
 
 				// ta część kodu obraca pocisk tak, by leciał w drugą stronę
 				Vector3 newScale = bullet.transform.localScale;

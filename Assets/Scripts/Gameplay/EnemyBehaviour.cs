@@ -12,9 +12,10 @@ public class EnemyBehaviour : MonoBehaviour
     private bool isFacingRight = false;
     [SerializeField] private float bulletSpeed = 10000f;
     [SerializeField] private GameObject bulletPrefab = null;
-    private static float halfWidth = 0.0f;
+	[SerializeField] private GameObject muzzle = null;
+	private static float halfWidth = 0.0f;
     private GameObject bullet = null;
-    private SpriteRenderer spriteRenderer = null;
+	private GameObject body = null;
 
     public GameObject leftLimitWall = null;
     public GameObject rightLimitWall = null;
@@ -37,26 +38,33 @@ public class EnemyBehaviour : MonoBehaviour
         set
         {
             isFacingRight = value;
-            spriteRenderer.flipX = !isFacingRight;
-        }
+			if (isFacingRight)
+			{
+				body.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+			}
+			else
+			{
+				body.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+			}
+		}
     }
 
 
     private void Awake()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        Assert.IsNotNull(spriteRenderer);
+	{
+		body = transform.GetChild(0).gameObject;
+		Assert.IsNotNull(body);
 
-        rigidbody = GetComponent<Rigidbody2D>();
+		rigidbody = GetComponent<Rigidbody2D>();
         Assert.IsNotNull(rigidbody);
 
          // wylosowanie strony, w którą na początku będzie iść przeciwnik
         float randomValue = Random.Range(0, 2);
         IsFacingRight = randomValue == 0;
 
-        // znalezienie połowy szerokości - pomoże to przy tworzeniu pocisków
-        halfWidth = GetComponent<Renderer>().bounds.extents.x + bulletPrefab.GetComponent<Renderer>().bounds.extents.x;
-    }
+		// znalezienie połowy szerokości - pomoże to przy tworzeniu pocisków
+		halfWidth = GetComponent<BoxCollider2D>().size.x / 2.0f;
+	}
 
     private void Start()
     {
@@ -119,12 +127,12 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (IsFacingRight)
         {
-            bullet = Instantiate(bulletPrefab, new Vector3(transform.position.x + halfWidth, transform.position.y, transform.position.z), transform.rotation);
+            bullet = Instantiate(bulletPrefab, new Vector3(transform.position.x - muzzle.transform.localPosition.x, transform.position.y + muzzle.transform.localPosition.y, transform.position.z), transform.rotation);
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletSpeed, 0);
         }
         else
         {
-            bullet = Instantiate(bulletPrefab, new Vector3(transform.position.x - halfWidth, transform.position.y, transform.position.z), transform.rotation);
+            bullet = Instantiate(bulletPrefab, new Vector3(transform.position.x + muzzle.transform.localPosition.x, transform.position.y + muzzle.transform.localPosition.y, transform.position.z), transform.rotation);
 
             // ta część kodu obraca pocisk tak, by leciał w drugą stronę
             Vector3 newScale = bullet.transform.localScale;
