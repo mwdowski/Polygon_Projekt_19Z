@@ -3,8 +3,14 @@
 
 public class PlayerBullet : MonoBehaviour
 {
+
+    public float speed;
+    public float lifeTime;
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+        
+
         string hitTag = collision.gameObject.tag;
         if (hitTag == "Walls")
         {
@@ -22,5 +28,9 @@ public class PlayerBullet : MonoBehaviour
             Physics2D.IgnoreCollision(collision, gameObject.GetComponent<Collider2D>());
             return;
         }
+    }
+    private void Update()
+    {
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
     }
 }
